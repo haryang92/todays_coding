@@ -153,7 +153,7 @@
 - ORM Framework 중 하나
 - JPA의 실제 구현체 중 하나이며, 현재 JPA 구현체 중 가장 많이 사용됨 
 
-![image](https://user-images.githubusercontent.com/73573088/223069355-61f6da78-84a3-4151-a825-ec052eecd6f2.png)
+![image](https://user-images.githubusercontent.com/73573088/223070647-43def6de-c69c-411b-9b7b-0cdd754385d9.png)
 - 상속과 관련된 내용
 
 #### Spring Data JPA
