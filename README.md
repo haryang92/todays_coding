@@ -111,7 +111,7 @@
 - Service가 DB에 연결할 수 있게 해주는 역할
 - DB를 사용하여 데이터를 조회하거나 조작하는 기능을 전담
 
-### DTO(Data Transfer Object)
+### 12. DTO(Data Transfer Object)
 - DTO는 VO(Value Object)로 불리기도 하며, 계층간 데이터 교환을 위한 객체를 의미
 - VO의 경우 Read Only의 개념을 가지고 있음
 - (데이터를 옮겨 주기 위한 객체)
