@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import studio.thinkground.testproject.dto.MemberDTO;
+import studio.thinkground.SpringTestProject.data.dto.MemberDTO;
 
 import java.util.Map;
 

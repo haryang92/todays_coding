@@ -8,12 +8,12 @@ import studio.thinkground.SpringTestProject.data.handler.ProductDataHndler;
 import studio.thinkground.SpringTestProject.service.ProductService;
 
 @Service
-public class ProductServiceimpl implements ProductService {
+public class ProductServiceImpl implements ProductService {
 
     ProductDataHndler productDataHndler;
 
     @Autowired
-    public ProductServiceimpl(ProductDataHndler productDataHndler){
+    public ProductServiceImpl(ProductDataHndler productDataHndler){
         this.productDataHndler = productDataHndler;
     }
 

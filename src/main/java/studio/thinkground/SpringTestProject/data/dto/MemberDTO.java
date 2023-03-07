@@ -1,4 +1,4 @@
-package studio.thinkground.testproject.dto;
+package studio.thinkground.SpringTestProject.data.dto;
 
 import lombok.Getter;
 import lombok.Setter;

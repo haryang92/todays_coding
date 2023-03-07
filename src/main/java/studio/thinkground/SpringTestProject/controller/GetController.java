@@ -1,7 +1,7 @@
 package studio.thinkground.SpringTestProject.controller;
 
 import org.springframework.web.bind.annotation.*;
-import studio.thinkground.testproject.dto.MemberDTO;
+import studio.thinkground.SpringTestProject.data.dto.MemberDTO;
 
 import java.util.Map;
 
