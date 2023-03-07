@@ -518,3 +518,34 @@ Trace -> Debug -> Info -> Warn -> Error
 - AOP를 통해 기존 프로젝트에 다양한 기능을 로직 수정 없이 추가할 수 있음
 - 이런 개발 방식을 통해 결합도를 낮춘 개발이 가능함
 TIP. 알아보면 좋은 것 : 프록시 디자인 패턴, 핵심적인 관점, 부가적인 관점, 흩어진 관심사(Crosscutting Concerns)
+
+#### 스프링 프레임워크의 대표적 모듈
+- 스프링 프레임워크는 다양한 기능이 존재 그 기능들은 약 20개 의 모듈로 구성되어 있음
+- 많이 사용되는 대표적인 모듈
+    - Spring JDBC
+    - Spring MVC
+    - Spring AOP
+    - Spring ORM
+    - Spring Test
+    - Spring Expression Language(SpEL)
+
+#### 스프링 부트가 제공하는 기능
+- 스프링 부트는 자동설정(AutoConfiguration)을 이용
+    - 어플리케이션 개발에 필요한 모든 디펜던시(Dependency)를 프레임워크에서 관리
+    - jar파일이 클래스 패스에 있는 경우 스프링 부트는 Dispatcher Servlet으로 자동 구성됨
+    - 스프링 부트는 미리 설정되어 있는 Starter 프로젝트를 제공
+    - xml 설정 없이 자바 코드를 통해 설정할 수 있음
+- 어플리케이션을 개발하면서 사용되는 디펜던시들은 호환되는 버전으로 관리해줘야 함
+    - 이런 복잡도를 줄이기 위해 스프링 부트는 SpringBoot-Starter를 제공하여 자동으로 호환되는 버전을 관리
+- 모니터링 관리를 위한 스프링 액추에이터(Spring Actuator) 제공
+    - 서비스가 정상적으로 동작하는지 상태 모니터링 기능 제공
+    - 스프링 액추에이터는 스프링 부트에서 제공하는 상태 정보를 보다 쉽게 모니터링할 수 있게 기능을 제공
+
+#### 스프링 부트 프로젝트의 starter 디펜던시
+- spring-boot-starter-web-service : SOAP 웹 서비스 
+- spring-boot-starter-web : RESTful 응용 프로그램
+- spring-boot-starter-test : 단위 테스트, 통합 테스트
+- spring-boot-starter-jdbc : 기본적인 JDBC
+- spring-boot-starter-security : 스프링 시큐리티(인증,권한)
+- spring-boot-starter-data-jpa : Spring Data JPA(Hibernate)
+- spring-boot-starter-cache : 캐시
