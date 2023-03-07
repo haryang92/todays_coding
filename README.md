@@ -496,3 +496,25 @@ Trace -> Debug -> Info -> Warn -> Error
 - Maven의 라이프 사이클 : compile -> test -> package -> install -> deploy
 - Jacoco 플러그인은 Maven 라이프 사이클에 의해 동작하며, test phase 이후에 측정이 가능함 
 - package phase 이후로 동작 가능
+
+### 22. 스프링 VS 스프링 부트
+#### 스프링(Spring) 이란 ?
+- 정확한 표현으로는 ' 스프링 프레임워크(Spring Framework)'
+- 스프링 프레임워크(Spring Framework)는 자바에서 가장 많이 사용되는 프레임워크
+- 의존성 주입(DI, Dependency Injection)과 제어역전(IOC, Iversion of Control), 관점지향 프로그래밍(AOP)이 가장 중요한 요소
+- 위 요소들을 통해 느슨한 결합(Loose Coupling)을 달성할 수 있음
+- 위와 같이 느슨한 결합으로 개발한 어플리케이션은 단위 테스트를 수행하기 용이함
+
+#### 의존성 주입(DI, Dependency Injection)
+- 예제 코드와 같이 DI를 사용하지 않은 코드의 경우
+![image](https://user-images.githubusercontent.com/73573088/223377968-9b1f7b92-313f-4e43-aed9-c1a4c19016f2.png)
+
+- 예제 코드와 같이 DI를 사용하는 코드의 경우
+![image](https://user-images.githubusercontent.com/73573088/223378124-d34b8c5d-8c2b-4d11-9b2f-bdb2e0de0e7d.png)
+
+#### 관점 지향 프로그래밍(AOP, Aspect Oriented Programming)
+- 스프링 프레임워크에서 제공하는 강력한 기능 중 하나 
+- AOP는 쉽게 말해, OOP를 보완하는 수단으로, 여러 곳에 쓰이는 공통 기능을 모듈화하여 필요한 것에 연결함으로써 유지보수 또는 재사용에 용이하도록 하는 것을 의미
+- AOP를 통해 기존 프로젝트에 다양한 기능을 로직 수정 없이 추가할 수 있음
+- 이런 개발 방식을 통해 결합도를 낮춘 개발이 가능함
+TIP. 알아보면 좋은 것 : 프록시 디자인 패턴, 핵심적인 관점, 부가적인 관점, 흩어진 관심사(Crosscutting Concerns)
