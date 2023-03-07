@@ -221,3 +221,103 @@ Trace -> Debug -> Info -> Warn -> Error
 
 #### pattern
 ![image](https://user-images.githubusercontent.com/73573088/223157673-dc81483c-f386-49e2-8b7d-e912758cab17.png)
+
+### 16. 유효성 검사 / 데이터 검증 (Validation)
+#### 유효성 검사란?
+- 서비스의 비즈니스 로직이 올바르게 동작하기 위해 사용되는ㄴ 데이터에 대한 사전 검증하는 작업이 필요함
+- 유효성 검사 혹은 데이터 검증이라고 부르는데, 흔히 Validation이라고 부름
+- 데이터 검증은 여러 계층에서 발생하는 흔한 작업
+- Validation은 들어오는 데이터에 대해 의도한 형식의 값이 제대로 들어오는지 체크하는 과정을 뜻함
+
+#### 일반적인 Validation의 문제점
+- 일반적인 어플리케이션에서 사용되던 Validation 방식은 몇가지 문제가 존재
+    - 어플리케이션 전체적으로 분산되어 존배
+    - 코드의 중복이 심함(코드가 복잡해짐)
+    - 비즈니스 로직에 섞여 있어 검사 로직 추적이 어려움
+    
+![image](https://user-images.githubusercontent.com/73573088/223295969-e27b1b7f-ee24-481d-95a9-de3f894a258d.png)
+
+#### Bean Validation / Hibernate Validator 
+- 앞서 나온 문제를 해결하기 위해 Java에서 2009년부터 Bean Validation이라는 데이터 유효셩 검사 프레임워크를 제공
+- Bean Validation은 어노테이션을 통해 다양한 데이터를 검증할 수 있게 기능을 제공
+- Hibernate Validator는 Bean Validation 명세에 대한 구현체 
+- Spring Boot의 유효성 검사 표준은 Hibernate Validator를 채택
+- 이전 버전의 Spring Boot에서는 starter-web에 validation이 포함되어 있었지만, 2.3버전 부터는 starter-validation을 추가해야함
+
+#### Validation 관련 어노테이션
+- @Size : 문자의 길이 조건
+- @NotNull : null 값 불가
+- @NotEmpty : @NotNull + ""값 불가
+- @NotBlank : @NotEmpty + " "값 불가
+- @Past : 과거 날짜 
+- @PastOrPresent : @Past + 오늘 날짜 
+- @Future: 미래 날짜 
+- @FutureOrPresent : @Future + 오늘 날짜 
+- @Pattern : 정규식을 통한조건
+- @Max : 최대값 조건 설정 
+- @Min : 최소값 조건 설정
+- @AssertTrue / AssertFalse : 참/거짓 조건 설정
+- @Valid : 해당 객체의 유효성 검사
+
+### 17. 예외 처리(Exception)
+#### 스프링 부트의 예외 처리 방식 
+- 스프링 부트의 예외 처리 방식은 크게 2가지가 존재
+    - @ControllerAdvice를 통한 모든 Controller에서 발생할 수 있는 예외 처리 
+    - @ExceptionHandler를 통한 특정 Controller의 예외 처리 
+    - @ControllerAdvice로 모든 컨트롤러에서 발생할 예외를 정의하고, @ExceptionHandler를 통해 발생하는 예외마다 처리할 메소드를 정의
+
+#### 예외 클래스
+![image](https://user-images.githubusercontent.com/73573088/223298980-41715b87-0e71-4bb9-b6cc-eb6c4be1c115.png)
+
+- 모든 예외 클래스는 Throwable 클래스를 상속 받고 있음
+- Exception은 수많은 자식 클래스가 있음
+- RuntimeException은 Unchecked Exception이며, 그 외 Excption은 Checked Exception으로 볼 수 있음
+
+![image](https://user-images.githubusercontent.com/73573088/223299388-23b40871-7475-4cb6-8830-90166ae0349e.png)
+
+#### @ControllerAdvice, @RestControllerAdvice
+- @ControllerAdvice는 Spring에서 제공하는 어노테이션
+- @Controller나 @RestController에서 발생하는 예외를 한 곳에서 관리하고 처리할 수 있게 하는 어노테이션
+- 설정을 통해 범위 지정이 가능하며, Defalut 값으로 모든 Controller에 대해 예외 처리를 관리함
+    - @RestContrllerAdvice(basePackages = "aroundhub.thinkground.studio")와 같이 패키지 범위를 설정할 수 있음
+-예외 발생 시 json의 형태로 결과를 반환하기 위해서는 @RestControllerAdvice를 사용하면 됨
+
+#### @ExceptionHandler
+- 예외 처리 상황이 발생하면 해당 Handler로 처리하겠다고 명시하는 어노테이션
+- 어노테이션 뒤에 괄호를 붙여 어떤 ExceptionClass를 처리할지 설정할 수 있음
+    - @ExceptionHandler(00Exception.class)
+- Exception.class는 최상위 클래스로 하위 세부 예외 처리 클래스로 설정한 핸들러가 존재하면, 그 핸들러가 우선처리하게 되며, 처리 되지 못하는 예외 처리에 대해 ExceptionClass에서 핸들링함
+- @ControllerAdvice로 설정된 클래스 내에서 메소드로 정의할 수 있지만, 각 Controller 안에 설정도 가능
+- 전역 설정(@ControllerAdvice)보다 지역 설정(Controller)으로 정의한 Handler가 우선순위를 가짐
+
+#### 우선순위 도식화 
+![image](https://user-images.githubusercontent.com/73573088/223300996-2359554a-023d-443d-a72f-8915a2b34590.png)
+![image](https://user-images.githubusercontent.com/73573088/223301054-b3dfa422-188f-4651-aeba-2507ef6f1aad.png)
+
+### 18. Custom Exception 
+#### 목표하는 에러 응답 예시
+- 아래와 같이 error type, error code, message를 응답함으로써 Client에 정확히 어떤 에러가 발생했는지 공유하는 것
+![image](https://user-images.githubusercontent.com/73573088/223303348-fccceef4-bf9d-4f54-a7bb-dc3f0c590726.png)
+
+#### Exceprion 구조
+![image](https://user-images.githubusercontent.com/73573088/223303561-41b73edb-aa52-4764-be3e-291ac7561123.png)
+
+#### Throwable 구조
+![image](https://user-images.githubusercontent.com/73573088/223303663-3a90522b-c359-4237-bb19-3719e7cb2de6.png)
+
+#### HttpStatus 
+- HttpStatus는 Enum 클래스임
+- Enum 클래스 
+    - 서로 관련 있는 상수들을 모아 심볼릭한 명칭의 집합으로 정의한 것
+    - 클래스 처럼보이게 하는 상수
+    
+![image](https://user-images.githubusercontent.com/73573088/223303983-9403287c-946b-416a-b1a1-719e54cd7a18.png)
+
+#### Custom Exception
+- error type, error code, message에서 필요한 내용은 아래와 같음
+    - error type : HttpStatus의 reasonPhrase
+    - error code : HttpStatus의 value
+    - message : 상황별 디테일 message
+
+![image](https://user-images.githubusercontent.com/73573088/223304487-8317ef21-4b35-464f-b1e3-da87b56b82a3.png)
+
