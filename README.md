@@ -10,6 +10,145 @@
 <https://www.youtube.com/watch?v=7t6tQ4KV37g>
 
 ## 📌 스터디 내용
+### REST API
+#### API 란?
+- Application Programming Interface의 줄임말
+- 응용 프로그램에서 사용할 수 있도록 다른 응용 프로그램을 제어할 수 있게 만든 인터페이스를 뜻함
+- API를 사용하면 내부 구현 로직을 알지 못해도 정의되어 있는 기능을 쉽게 사용할 수 있음
+- 인터페이스(Interface)란 ? 어떤 장치간 정보를 교환하기 위한 수단이나 방법을 의미함, 대표적인 예로는 마우스, 키보드, 터치패드 등이 있음
+
+#### REST 란?
+- REST는 Representational State Transfer의 줄임말
+- 자원의 이름으로 구분하여 해당 자원의 상태를 교환하는 것을 의미
+- REST는 서버와 클라이언트의 통신 방식 중 하나임
+- HTTP URI(Uniform Resource Identifier)를 통해 자원을 명식하고 HTTP Method(Create, Read, Update, Delete)를 통해 자원을 교환하는 것
+
+#### REST 특징
+1) Server-Client 구조
+- 자원이 있는 쪽이 Server, 요청하는 쪽이 Client
+- 클라이언트와 서버가 독립적으로 분리 되어 있어야함
+
+2) Stateless
+- 요청 간에 클라이언트 정보가 서버에 저장되지 않음
+- 서버는 각각의 요청을 완전히 별개의 것으로 인식하고 처리 
+
+3) Cacheable
+- HTTP 프로토콜을 그대로 사용하기 때문에 HTTP의 특징인 캐싱 기능을 적용
+- 대량의 요청을 효율적으로 처리하기 위해 캐시를 사용
+
+4) 계층화(Layered System)
+- 클라이언트는 서버의 구성과 상관 없이 REST API 서버로 요청
+- 서버는 다중 계층으로 구성될 수 있음(로드밸런싱, 보안 요소, 캐시 등)
+
+5) Code on Demand(Optional)
+- 요청을 받으면 서버에서 클라이언트로 코드 또는 스크립트(로직)을 전달하여 클라이언트 기능 확장
+
+6) 인터페이스 일관성(Uniform Interface)
+- 정보가 표준 형식으로 전송되기 위해 구성 요소간 통합 인터페이스를 제공
+- HTTP 프로토콜을 따르는 모든 플랫폼에서 사용 가능하게끔 설계
+
+#### REST 장점
+- HTTP 표준 프로토콜을 사용하는 모든 플랫폼에서 호환 가능
+- 서버와 클라이언트의 역할을 명확하게 분리
+- 여러 서비스 설계에서 생길 수 있는 문제를 최소화
+
+#### REST API 란?
+- REST 아키텍처의 조건을 준수하는 어플리케이션 프로그래밍 인터페이스를 뜻함
+- 최근 많은 API가 REST API로 제공되고 있음 
+- 일반적으로 REST 아키텍처를 구현하는 웹 서비스를 RESTful 하다고 표현한다
+
+#### REST API 특징
+- REST 기반으로 시스템을 분산하여 확장성과 재사용성을 높임
+- HTTP 표준을 따르고 있어 여러 프로그래밍 언어로 구현할 수 있음
+
+#### REST API 설계 규칙
+- 웹 기반의 REST API를 설계할 경우에는 URI를 통해 자원을 표현해야 함
+- 자원에 대한 조작은 HTTP Method(CRUD)를 통해 표현해야함
+    - URI에 행위가 들어가면 안됨
+    - HEADER를 통해 CRUD를 표현하여 동작을 요청해야 함
+- 메세지를 통한 리소스 조작
+    - HEADER를 통해 context-type을 지정하여 데이터 전달
+    - 대표적 형식으로는 HTML, XML, JSON, TEXT가 있음
+    
+#### REST API 설계 규칙
+- URI에는 소문자를 사용
+- Resource의 이름이나 URI가 길어질 경우 하이픈(-)을 통해 가독성을 높일 수 있음
+- 언더바(_)는 사용하지 않음
+- 파일 확장자를 표현하지 않음
+
+### pom.xml
+- Maven 프로젝트를 생성하면 루트 디렉토리에 생성되는 파일
+- Project Object Model 정보를 담고 있음
+- 프로젝트 정보 : 프로젝트의 이름, 개발자 목록, 라이센스 등
+- 빌드 설정 정보 : 소스, 리소스, 라이프 사이클 등 실행할 플러그인 등
+- POM 연관 정보 : 의존 프로젝트(모듈), 상위 프로젝트, 하위 모듈 등
+
+#### 프로젝트 정보 
+- pom 파일에서 프로젝트 정보와 관련된 태그는 아래와 같다
+<name> : 프로젝트명
+<url> : 프로젝트 사이트 URL
+<description> : 프로젝트에 대한 간단한 설명
+<organization> : 프로젝트를 관리하는 단체 설명
+
+<groupId> : 프로젝트의 그룹 ID 설정 
+<artifactId> : 프로젝트 아티팩트 ID 설정 
+<version> : 프로젝트의 버전
+<packaging> : 패키징 타입 설정 
+    - jar : 자바 프로젝트 압축 파일 
+    - war : 웹 어플리케이션을 위한 패키징 방식
+
+<dependencies> : 라이브러리 의존성 정보를 가지고 있는 dependency 태그를 묶은 태그
+<dependency> : 각 라이브러리의 정보를 담는 태그
+<groupId> : 의존성 라이브러리의 group ID
+<artifactId> : 의존성 라이브러리의 아티팩트 ID
+<version> : 의존성 라이브러리의 버전
+<scope> : 해당 라이브러리의 이용 범위를 지정
+<optional> : 다른 프로젝트에서 이 프로젝트를 의존성 설정할 경우 사용할지 결정
+
+### MVC(Model View Controller) 패턴
+- 디자인 패턴 중 하나인 MVC 패턴은 Model View Controller의 줄임말로 어플리케이션을 구성할 때 그 구성요소를 세가지의 역할로 구분한 패턴을 의미 
+- 사용자 인터페이스로부터 비즈니스 로직을 분리하여 서로 영향 없이 쉽게 고칠 수 있는 설계가 가능
+
+* 특징 *
+- 어플리케이션의 역할을 세 구간으로 나누어 설계함으로써 서로 간의 의존성이 낮아짐
+- 각 영역이 독립적으로 구성하여 개발자 간 분업 및 협업이 원활해짐
+- 한 영역을 업데이트 하더라도 다른 곳에 영향을 주지 않음
+
+![image](https://user-images.githubusercontent.com/73573088/223687637-8a84ca0b-ca7d-40ee-a40e-a6e0e21b801d.png)
+
+#### 컨트롤러(Controller)
+- 모델(Model)과 뷰(View) 사이에서 브릿지 역할을 수행
+- 앱의 사용자로부터 입력에 대한 응답으로 모델 및 뷰를 업데이트하는 로직을 포함
+- 사용자의 요청은 모두 컨트롤러를 통해 진행되어야 함
+- 컨트롤러로 들어온 요청은 어떻게 처리할지 결정하여 모델로 요청을 전달함
+
+#### 모델(Model)
+- 데이터를 처리하는 영역
+- 데이터베이스와 연동을 위함 DAO(Data Access Object)와 데이터의 구조를 표현하는 DO(Data Object)로 구성됨
+
+#### 뷰(View)
+- 데이터를 보여주는 화면 자체의 영역을 뜻함
+- 사용자 인터페이스(UI) 요소들이 여기에 포함되며, 데이터를 각 요소에 배치함
+- 뷰에서는 별도의 데이터를 보관하지 않음
+
+### @RestController 
+- Spring Framework 4 버전부터 사용가능한 어노테이션
+- @Controller에 @ResponseBody가 결합된 어노테이션
+- 컨트롤러 클래스 하위 메소드 @ResponseBody 어노테이션을 붙이지 않아도 문자열과 JSON 등을 전송할 수 있음
+- View를 거치지 않고 HTTP ResponseBody에 직접 Return값을 담아 보내게 됨
+
+![image](https://user-images.githubusercontent.com/73573088/223689061-9623f073-8eb6-4d0c-ad73-822b9711f91c.png)
+
+### @RequestMapping
+- MVC의 핸들러 매핑(Handler Mapping)을 위해서 DefaultAnnotationHandlerMapping을 사용
+- DefaultAnnotationHandlerMapping 매핑정보로 @RequestMapping 어노테이션 활용
+- 클래스와 메소드의 RequestMapping을 통해 URL을 매핑하여 경로를 설정하여 해당 메소드에서 처리
+- value와 method로 정의하여 API 개발하는 방식
+- 이제는 고전적인 방법으로 사용하지 않음
+
+### @GetMapping(without Param)
+별도의 파라미터 없이 GET API를 호출하는 경우 사용되는 방법
+
 ### @PathVariable
 - GET 형식의 요청에서 파라미터를 전달하기 위해 URL에 값을 담아 요청하는 방법
 
